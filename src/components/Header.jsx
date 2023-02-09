@@ -1,17 +1,17 @@
-import '../navbar.css';
+import '../header.css';
 
-function Navbar() {
+function Header() {
   return (
-    <div className='container navbar'>
-      <nav className='navbar'>
+    <div className='header_background'>
+      <header className='header'>
         <h1 className='logo'>
           <b>REST</b>Countries
         </h1>
         {/* Placeholder icon for dark/light mode switch */}
         <i className='fa-solid fa-moon'></i>
-      </nav>
+      </header>
     </div>
   );
 }
 
-export default Navbar;
+export default Header;
