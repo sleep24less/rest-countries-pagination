@@ -1,4 +1,5 @@
 import '../header.css';
+import ThemeSwitch from './ThemeSwitch';
 
 function Header() {
     return (
@@ -7,8 +8,7 @@ function Header() {
                 <h1 className='logo'>
                     <b>REST</b>Countries
                 </h1>
-                {/* Placeholder icon for dark/light mode switch */}
-                <i className='fa-solid fa-moon'></i>
+                <ThemeSwitch />
             </header>
         </div>
     );

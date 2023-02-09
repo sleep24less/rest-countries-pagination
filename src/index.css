@@ -1,3 +1,4 @@
+/*__________________________________ NORMALIZE CSS RESET */
 html {
     -webkit-text-size-adjust: 100%;
     line-height: 1.15;
@@ -184,7 +185,7 @@ template {
     display: none;
 }
 
-/* ___________________________ NORMALIZE CSS RESET ABOVE ____________________ */
+/* ___________________________ END OF CSS RESET ____________________ */
 
 /* COLOR VARIABLES */
 :root {
@@ -236,4 +237,47 @@ body {
 
 .container {
     max-width: 1440px;
+}
+
+/* RESPONSIVE DESIGN */
+@media only screen and (max-width: 768px) {
+    .header {
+        padding: 0 25px;
+    }
+
+    .filter {
+        margin: 0;
+    }
+    .filter form {
+        flex-direction: column;
+        gap: 16px;
+        padding: 25px;
+    }
+
+    .filter input {
+        width: 100%;
+    }
+
+    .filter select {
+        width: 100%;
+    }
+
+    .main {
+        padding: 0 25px;
+        margin: 0;
+    }
+
+    .country_flag {
+        width: 40%;
+    }
+
+    .country_info {
+        width: 50%;
+        font-size: 0.8rem;
+    }
+
+    .country_name {
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
 }
