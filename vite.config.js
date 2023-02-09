@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/reiz-internship-assignment/',
+    plugins: [react()],
+    base: '/reiz-internship-assignment/',
 });

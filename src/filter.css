@@ -1,75 +1,75 @@
 /* COLOR VARIABLES */
 :root {
-  transition: 0.2s ease;
-  --color-bg: #ececec;
-  --color-bg-elements: #ffffff;
-  --color-text: #111517;
-  --color-text-light: #43545c;
-  --color-accent: #ff6e31;
+    transition: 0.2s ease;
+    --color-bg: #ececec;
+    --color-bg-elements: #ffffff;
+    --color-text: #111517;
+    --color-text-light: #43545c;
+    --color-accent: #ff6e31;
 }
 
 :root.dark {
-  transition: 0.2s ease;
-  --color-bg: #202c37;
-  --color-bg-elements: #2b3945;
-  --color-text: #ffffff;
-  --color-text-light: #cfcfcf;
-  --color-accent: #ff6e31;
+    transition: 0.2s ease;
+    --color-bg: #202c37;
+    --color-bg-elements: #2b3945;
+    --color-text: #ffffff;
+    --color-text-light: #cfcfcf;
+    --color-accent: #ff6e31;
 }
 
 .filter {
-  width: 100%;
-  max-width: 1240px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 30px;
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .filter input {
-  background-color: var(--color-bg-elements);
-  height: 40px;
-  padding-left: 15px;
-  padding-right: 50px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  font-family: inherit;
-  color: var(--color-text);
+    background-color: var(--color-bg-elements);
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 50px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    color: var(--color-text);
 }
 
 .filter form {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 70px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 70px;
 }
 
 .filter input::placeholder {
-  color: var(--color-text-light);
+    color: var(--color-text-light);
 }
 
 .filter select {
-  background-color: var(--color-bg-elements);
-  height: 40px;
-  font-family: inherit;
-  color: var(--color-text);
-  padding-left: 15px;
-  width: 200px;
-  border: none;
-  border-radius: 5px;
-  /* Adds margin to dropdown arrow */
-  border-right: 8px solid transparent;
-  cursor: pointer;
+    background-color: var(--color-bg-elements);
+    height: 40px;
+    font-family: inherit;
+    color: var(--color-text);
+    padding-left: 15px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    /* Adds margin to dropdown arrow */
+    border-right: 8px solid transparent;
+    cursor: pointer;
 }
 
 .filter optgroup {
-  color: var(--color-text-light);
-  font-weight: 300;
+    color: var(--color-text-light);
+    font-weight: 300;
 }
 
 .filter option {
-  color: var(--color-text);
+    color: var(--color-text);
 }
