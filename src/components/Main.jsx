@@ -1,4 +1,5 @@
 import Country from './Country';
+import Filter from './Filter';
 import '../main.css';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -21,20 +22,23 @@ function Main() {
   }, []);
 
   return (
-    <main className='main'>
-      {countries.map((country) => {
-        const { name, region, area, numericCode, flag } = country;
-        return (
-          <Country
-            key={numericCode}
-            name={name}
-            region={region}
-            area={area}
-            flag={flag}
-          />
-        );
-      })}
-    </main>
+    <>
+      <Filter fetchData={getCountriesData} />
+      <main className='main'>
+        {countries.map((country) => {
+          const { name, region, area, numericCode, flag } = country;
+          return (
+            <Country
+              key={numericCode}
+              name={name}
+              region={region}
+              area={area}
+              flag={flag}
+            />
+          );
+        })}
+      </main>
+    </>
   );
 }
 
