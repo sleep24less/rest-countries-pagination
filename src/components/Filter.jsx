@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import '../filter.css';
 
 function Filter(props) {
@@ -28,21 +29,31 @@ function Filter(props) {
           onChange={handleSearch}
         ></input>
         <div className='container_select'>
-          <select name='select' id='select' className='select'>
-            <option
-              value='Filter by region'
-              disabled='disabled'
-              selected='true'
-            >
+          <select
+            name='select'
+            id='select'
+            className='select'
+            onChange={props.handleFilter}
+            defaultValue='Filter by region'
+          >
+            <option value='Filter by region' disabled hidden>
               Filter by...
             </option>
-            <option value='All'>A-Z</option>
-            <option value='Reverse'>Z-A</option>
-            <option value='Africa'>Africa</option>
-            <option value='Americas'>Americas</option>
-            <option value='Asia'>Asia</option>
-            <option value='Europe'>Europe</option>
-            <option value='Oceania'>Oceania</option>
+            <optgroup label='Alphabetical order'>
+              <option value='Alphabet'>A-Z</option>
+              <option value='Reverse'>Z-A</option>
+            </optgroup>
+            <optgroup label='Region'>
+              <option value='Africa'>Africa</option>
+              <option value='Americas'>Americas</option>
+              <option value='Asia'>Asia</option>
+              <option value='Europe'>Europe</option>
+              <option value='Oceania'>Oceania</option>
+            </optgroup>
+            <optgroup label='Area'>
+              <option value='Smaller'>Smaller than LT</option>
+              <option value='Bigger'>Bigger than LT</option>
+            </optgroup>
           </select>
         </div>
       </form>
