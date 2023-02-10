@@ -21,7 +21,9 @@ function Paginate({ countriesPerPage, totalCountries, paginate, currentPage }) {
                     return (
                         <li
                             key={number}
-                            className='page_number'
+                            className={`page_number ${
+                                number === currentPage ? 'selected' : ''
+                            }`}
                             onClick={() => paginate(number)}
                         >
                             {number}

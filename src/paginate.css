@@ -33,8 +33,30 @@
     list-style: none;
     appearance: none;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
+    border-radius: 8px;
     background-color: var(--color-bg-elements);
     cursor: pointer;
+}
+
+.page_number:active {
+    filter: brightness(0.7);
+}
+
+.page_number.selected {
+    color: var(--color-bg-elements);
+    background-color: var(--color-accent);
+}
+
+/* Hover only works on devices with hover capabilities */
+@media (hover: hover) {
+    .page_number:hover {
+        color: var(--color-bg-elements);
+        background-color: var(--color-accent);
+        /* transition: 0.3s cubic-bezier(0.25, 1, 0.3, 1); */
+    }
 }
