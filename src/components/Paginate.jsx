@@ -1,7 +1,16 @@
 import React from 'react';
 import '../paginate.css';
 
-function Paginate({ countriesPerPage, totalCountries, paginate, currentPage }) {
+function Paginate({
+    countriesPerPage,
+    totalCountries,
+    paginate,
+    currentPage,
+    previousPage,
+    nextPage,
+    firstPage,
+    lastPage,
+}) {
     // Store all pages in pageNumbers
     const pageNumbers = [];
     const numberOfPages = Math.ceil(totalCountries / countriesPerPage);
@@ -17,6 +26,12 @@ function Paginate({ countriesPerPage, totalCountries, paginate, currentPage }) {
     return (
         <div className='pagination_container'>
             <ul className='pagination'>
+                <li className='page_btn' onClick={firstPage}>
+                    &lt;&lt;
+                </li>
+                <li className='page_btn left_side' onClick={previousPage}>
+                    &lt;
+                </li>
                 {pagesToDisplay.map((number) => {
                     return (
                         <li
@@ -30,6 +45,12 @@ function Paginate({ countriesPerPage, totalCountries, paginate, currentPage }) {
                         </li>
                     );
                 })}
+                <li className='page_btn right_side' onClick={nextPage}>
+                    &gt;
+                </li>
+                <li className='page_btn' onClick={lastPage}>
+                    &gt;&gt;
+                </li>
             </ul>
         </div>
     );

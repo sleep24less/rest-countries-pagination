@@ -122,6 +122,26 @@ function Main() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+    const firstPage = () => {
+        setCurrentPage(1);
+    };
+    const lastPage = () => {
+        const numberOfPages = Math.ceil(
+            unfilteredCountries.length / countriesPerPage
+        );
+        setCurrentPage(numberOfPages);
+    };
+    const previousPage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
+        }
+    };
+
+    const nextPage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
+        }
+    };
 
     return (
         <>
@@ -149,6 +169,10 @@ function Main() {
                     totalCountries={countries.length}
                     paginate={paginate}
                     currentPage={currentPage}
+                    firstPage={firstPage}
+                    lastPage={lastPage}
+                    previousPage={previousPage}
+                    nextPage={nextPage}
                 />
             </main>
         </>
