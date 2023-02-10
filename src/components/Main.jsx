@@ -1,5 +1,6 @@
 import Country from './Country';
 import Filter from './Filter';
+import LoadingSpinner from './LoadingSpinner';
 import '../main.css';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -7,6 +8,7 @@ import Axios from 'axios';
 function Main() {
     // Storing countries for display
     const [countries, setCountries] = useState([]);
+    const [loading, setLoading] = useState(false);
     // Storing unfiltered countries for use in sorting function
     const [unfilteredCountries, setUnfilteredCountries] = useState([]);
     // Added numericCode value for key attribute in country component//
@@ -15,9 +17,11 @@ function Main() {
 
     // Function expression for fetching API data
     const getCountriesData = async () => {
+        setLoading(true);
         const data = await Axios.get(url).then((res) => res.data);
         setCountries(data);
         setUnfilteredCountries(data);
+        setLoading(false);
     };
 
     // load API data onload once
@@ -100,6 +104,7 @@ function Main() {
         <>
             <Filter handleFilter={handleFilter} />
             <main className='main'>
+                {loading && <LoadingSpinner />}
                 {countries.map((country) => {
                     const { name, region, area, numericCode, flag } = country;
                     return (
