@@ -1,5 +1,6 @@
 import Country from './Country';
 import Filter from './Filter';
+import Paginate from './Paginate';
 import LoadingSpinner from './LoadingSpinner';
 import '../main.css';
 import { useState, useEffect } from 'react';
@@ -9,19 +10,29 @@ function Main() {
     // Storing countries for display
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     // Storing unfiltered countries for use in sorting function
     const [unfilteredCountries, setUnfilteredCountries] = useState([]);
-    // Added numericCode value for key attribute in country component//
+    // Pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage] = useState(8);
+    // Added numericCode value for key attribute in country component
     const url =
         'https://restcountries.com/v2/all?fields=name,region,area,numericCode,flag';
 
     // Function expression for fetching API data
     const getCountriesData = async () => {
         setLoading(true);
-        const data = await Axios.get(url).then((res) => res.data);
-        setCountries(data);
-        setUnfilteredCountries(data);
-        setLoading(false);
+        await Axios.get(url)
+            .then((res) => {
+                setCountries(res.data);
+                setUnfilteredCountries(res.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setLoading(false);
+                setError(error);
+            });
     };
 
     // load API data onload once
@@ -100,12 +111,28 @@ function Main() {
         }
     };
 
+    // Pagination variables for displaying
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(
+        indexOfFirstCountry,
+        indexOfLastCountry
+    );
+    // Function that sets the current page for the Pagination component to use
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <>
             <Filter handleFilter={handleFilter} />
             <main className='main'>
+                {/* Display error from API */}
+                {error && <h1 className='error'>{error.message}</h1>}
+                {/* Display loading while fetching */}
                 {loading && <LoadingSpinner />}
-                {countries.map((country) => {
+                {/* Display countries */}
+                {currentCountries.map((country) => {
                     const { name, region, area, numericCode, flag } = country;
                     return (
                         <Country
@@ -117,6 +144,12 @@ function Main() {
                         />
                     );
                 })}
+                <Paginate
+                    countriesPerPage={countriesPerPage}
+                    totalCountries={countries.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                />
             </main>
         </>
     );

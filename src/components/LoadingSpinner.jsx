@@ -3,7 +3,7 @@ import '../loadingspinner.css';
 
 function LoadingSpinner() {
     return (
-        <div class='lds-ring'>
+        <div className='lds-ring'>
             <div></div>
             <div></div>
             <div></div>

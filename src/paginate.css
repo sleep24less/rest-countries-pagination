@@ -1,0 +1,40 @@
+/* COLOR VARIABLES */
+:root {
+    transition: 0.2s ease;
+    --color-bg: #ececec;
+    --color-bg-elements: #ffffff;
+    --color-text: #111517;
+    --color-text-light: #43545c;
+    --color-accent: #ff6e31;
+}
+
+:root.dark {
+    transition: 0.2s ease;
+    --color-bg: #202c37;
+    --color-bg-elements: #2b3945;
+    --color-text: #ffffff;
+    --color-text-light: #cfcfcf;
+    --color-accent: #ff6e31;
+}
+
+.pagination_container {
+    display: flex;
+    width: 100%;
+}
+
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+.page_number {
+    list-style-type: none;
+    list-style: none;
+    appearance: none;
+
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-bg-elements);
+    cursor: pointer;
+}
