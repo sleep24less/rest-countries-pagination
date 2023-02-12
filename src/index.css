@@ -236,13 +236,9 @@ body {
     gap: 30px;
 }
 
-.container {
-    max-width: 1440px;
-}
-
 /* RESPONSIVE DESIGN */
 @media only screen and (max-width: 768px) {
-    .header {
+    .header_container {
         padding: 0 25px;
     }
 
@@ -250,7 +246,7 @@ body {
         margin: 0;
         flex-direction: column;
         gap: 16px;
-        padding: 25px;
+        padding: 0 25px;
     }
 
     .toolbar input {
@@ -294,5 +290,9 @@ body {
 
     .page_number.selected + .page_number + .page_number {
         display: flex;
+    }
+
+    .pagination_container {
+        padding: 0 25px;
     }
 }

@@ -1,3 +1,5 @@
+import './searchbar.css';
+
 function SearchBar({ handleSearch }) {
     return (
         <input

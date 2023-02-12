@@ -1,0 +1,22 @@
+.toolbar select {
+    background-color: var(--color-bg-elements);
+    height: 40px;
+    font-family: inherit;
+    color: var(--color-text);
+    padding-left: 15px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    /* Adds margin to dropdown arrow */
+    border-right: 8px solid transparent;
+    cursor: pointer;
+}
+
+.toolbar optgroup {
+    color: var(--color-text-light);
+    font-weight: 300;
+}
+
+.toolbar option {
+    color: var(--color-text);
+}

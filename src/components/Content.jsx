@@ -136,25 +136,25 @@ function Content() {
         indexOfLastCountry
     );
     // Function that sets the current page for the Pagination component to use
-    const paginate = (pageNumber) => {
+    const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
-    const firstPage = () => {
+    const handleFirstPageClick = () => {
         setCurrentPage(1);
     };
-    const lastPage = () => {
+    const handleLastPageClick = () => {
         const numberOfPages = Math.ceil(
             unfilteredCountries.length / countriesPerPage
         );
         setCurrentPage(numberOfPages);
     };
-    const previousPage = () => {
+    const handlePreviousPageClick = () => {
         if (currentPage !== 1) {
             setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
         }
     };
 
-    const nextPage = () => {
+    const handleNextPageClick = () => {
         setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
     };
 
@@ -167,11 +167,8 @@ function Content() {
                 sortingOrder={sortingOrder}
             />
             <main className='content'>
-                {/* Display error from API */}
-                {error && <h1 className='error'>{error.message}</h1>}
-                {/* Display loading while fetching */}
+                {error && <h1>{error.message}</h1>}
                 {loading && <LoadingSpinner />}
-                {/* Display countries */}
                 {currentCountries.map((country) => {
                     const { name, region, area, numericCode, flag } = country;
                     return (
@@ -188,12 +185,12 @@ function Content() {
             <Paginate
                 countriesPerPage={countriesPerPage}
                 totalCountries={countries.length}
-                paginate={paginate}
+                paginate={handlePageClick}
                 currentPage={currentPage}
-                firstPage={firstPage}
-                lastPage={lastPage}
-                previousPage={previousPage}
-                nextPage={nextPage}
+                firstPage={handleFirstPageClick}
+                lastPage={handleLastPageClick}
+                previousPage={handlePreviousPageClick}
+                nextPage={handleNextPageClick}
             />
         </>
     );

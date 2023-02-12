@@ -3,14 +3,14 @@ import ThemeSwitch from './ThemeSwitch';
 
 function Header() {
     return (
-        <div className='header_background'>
-            <header className='header'>
+        <header className='header'>
+            <div className='header_container'>
                 <h1 className='logo'>
                     <b>REST</b>Countries
                 </h1>
                 <ThemeSwitch />
-            </header>
-        </div>
+            </div>
+        </header>
     );
 }
 

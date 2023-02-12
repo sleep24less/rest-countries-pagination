@@ -4,12 +4,12 @@ import './paginate.css';
 function Paginate({
     countriesPerPage,
     totalCountries,
-    paginate,
+    handlePageClick,
     currentPage,
-    previousPage,
-    nextPage,
-    firstPage,
-    lastPage,
+    handlePreviousPageClick,
+    handleNextPageClick,
+    handleFirstPageClick,
+    handleLastPageClick,
 }) {
     // Store all pages in pageNumbers
     const pageNumbers = [];
@@ -25,13 +25,17 @@ function Paginate({
 
     return (
         <div className='pagination_container'>
-            <button type='button' className='page_btn' onClick={firstPage}>
+            <button
+                type='button'
+                className='page_btn'
+                onClick={handleFirstPageClick}
+            >
                 &lt;&lt;
             </button>
             <button
                 type='button'
                 className='page_btn left_side'
-                onClick={previousPage}
+                onClick={handlePreviousPageClick}
             >
                 &lt;
             </button>
@@ -43,7 +47,7 @@ function Paginate({
                             className={`page_number ${
                                 number === currentPage ? 'selected' : ''
                             }`}
-                            onClick={() => paginate(number)}
+                            onClick={() => handlePageClick(number)}
                         >
                             {number}
                         </li>
@@ -53,11 +57,15 @@ function Paginate({
             <button
                 type='button'
                 className='page_btn right_side'
-                onClick={nextPage}
+                onClick={handleNextPageClick}
             >
                 &gt;
             </button>
-            <button type='button' className='page_btn' onClick={lastPage}>
+            <button
+                type='button'
+                className='page_btn'
+                onClick={handleLastPageClick}
+            >
                 &gt;&gt;
             </button>
         </div>

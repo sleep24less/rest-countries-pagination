@@ -1,4 +1,3 @@
-import React from 'react';
 import './country.css';
 
 function Country(props) {
@@ -11,10 +10,10 @@ function Country(props) {
             ></img>
             <div className='country_info'>
                 <h3 className='country_name'>{props.name}</h3>
-                <p className='country_region'>
+                <p>
                     <b>Region:</b> {props.region}
                 </p>
-                <p className='country_area'>
+                <p>
                     <b>Area:</b> {props.area} km²
                 </p>
             </div>

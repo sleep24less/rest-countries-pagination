@@ -1,10 +1,9 @@
-import React from 'react';
+import './filterdropdown.css';
 
 function FilterDropdown({ handleChange }) {
     return (
         <select
             name='select'
-            className='select'
             onChange={handleChange}
             defaultValue='Filter by region'
         >

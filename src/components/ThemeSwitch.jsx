@@ -12,10 +12,11 @@ function ThemeSwitch() {
     }
 
     return (
-        <label className='switch'>
-            <input type='checkbox' onChange={(e) => handleChange(e)}></input>
-            <span className='slider'></span>
-        </label>
+        <input
+            type='checkbox'
+            id='theme_switch'
+            onChange={(e) => handleChange(e)}
+        />
     );
 }
 

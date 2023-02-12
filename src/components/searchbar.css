@@ -1,0 +1,14 @@
+.toolbar input {
+    background-color: var(--color-bg-elements);
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 50px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: var(--color-text);
+}
+
+.toolbar input::placeholder {
+    color: var(--color-text-light);
+}
