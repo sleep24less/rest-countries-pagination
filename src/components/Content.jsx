@@ -1,10 +1,10 @@
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 import Country from './Country';
 import Toolbar from './Toolbar';
 import Paginate from './Paginate';
 import LoadingSpinner from './LoadingSpinner';
 import './content.css';
-import { useState, useEffect } from 'react';
-import Axios from 'axios';
 
 function Content() {
     const [countries, setCountries] = useState([]);
@@ -31,9 +31,9 @@ function Content() {
                 setUnfilteredCountries(res.data);
                 setLoading(false);
             })
-            .catch((error) => {
+            .catch((err) => {
                 setLoading(false);
-                setError(error);
+                setError(err);
             });
     };
 
