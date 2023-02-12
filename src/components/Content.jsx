@@ -185,12 +185,12 @@ function Content() {
             <Paginate
                 countriesPerPage={countriesPerPage}
                 totalCountries={countries.length}
-                paginate={handlePageClick}
+                handlePageClick={handlePageClick}
                 currentPage={currentPage}
-                firstPage={handleFirstPageClick}
-                lastPage={handleLastPageClick}
-                previousPage={handlePreviousPageClick}
-                nextPage={handleNextPageClick}
+                handleFirstPageClick={handleFirstPageClick}
+                handleLastPageClick={handleLastPageClick}
+                handlePreviousPageClick={handlePreviousPageClick}
+                handleNextPageClick={handleNextPageClick}
             />
         </>
     );

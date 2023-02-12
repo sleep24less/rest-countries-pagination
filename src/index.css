@@ -185,6 +185,10 @@ template {
     display: none;
 }
 
+ul {
+    margin: 0;
+}
+
 /* ___________________________ END OF CSS RESET ____________________ */
 
 /* COLOR VARIABLES */
