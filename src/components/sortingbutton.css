@@ -1,0 +1,14 @@
+.sorting_button {
+    background-color: var(--color-bg-elements);
+    height: 40px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    color: var(--color-text-light);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.sorting_button:active {
+    filter: brightness(0.5);
+}

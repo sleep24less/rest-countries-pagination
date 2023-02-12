@@ -1,9 +1,18 @@
-import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faArrowDownAZ,
+    faArrowDownZA,
+} from '@fortawesome/free-solid-svg-icons';
+import './sortingbutton.css';
 
-function SortingButton({ handleClick }) {
+function SortingButton({ handleClick, sortingOrder }) {
     return (
-        <button className='sorting_button' onClick={handleClick}>
-            A-Z
+        <button type='button' className='sorting_button' onClick={handleClick}>
+            {sortingOrder === 'Alphabet' ? (
+                <FontAwesomeIcon icon={faArrowDownAZ} />
+            ) : (
+                <FontAwesomeIcon icon={faArrowDownZA} />
+            )}
         </button>
     );
 }

@@ -164,6 +164,7 @@ function Content() {
                 handleChange={handleFilter}
                 handleClick={onClickSort}
                 handleSearch={handleSearch}
+                sortingOrder={sortingOrder}
             />
             <main className='content'>
                 {/* Display error from API */}
@@ -183,17 +184,17 @@ function Content() {
                         />
                     );
                 })}
-                <Paginate
-                    countriesPerPage={countriesPerPage}
-                    totalCountries={countries.length}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                    firstPage={firstPage}
-                    lastPage={lastPage}
-                    previousPage={previousPage}
-                    nextPage={nextPage}
-                />
             </main>
+            <Paginate
+                countriesPerPage={countriesPerPage}
+                totalCountries={countries.length}
+                paginate={paginate}
+                currentPage={currentPage}
+                firstPage={firstPage}
+                lastPage={lastPage}
+                previousPage={previousPage}
+                nextPage={nextPage}
+            />
         </>
     );
 }

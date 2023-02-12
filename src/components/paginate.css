@@ -17,10 +17,17 @@
     --color-accent: #ff6e31;
 }
 
+.pagination_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 50px;
+}
+
 .pagination {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
     gap: 10px;
     padding: 0;
 }
@@ -43,6 +50,7 @@
     color: var(--color-accent);
     font-weight: 700;
     font-size: 1.2rem;
+    border: none;
 }
 
 .page_btn.left_side {
@@ -67,8 +75,9 @@
 @media (hover: hover) {
     .page_number:hover,
     .page_btn:hover {
-        color: var(--color-bg-elements);
+        color: #ffffff;
         background-color: var(--color-accent);
+        filter: brightness(1.6);
         transition: 0.3s cubic-bezier(0.25, 1, 0.3, 1);
     }
 }

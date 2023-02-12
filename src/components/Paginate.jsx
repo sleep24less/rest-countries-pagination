@@ -19,19 +19,23 @@ function Paginate({
     }
     // Display only 8 pages at the time using currentPage as anchor
     const start = currentPage <= 4 ? 0 : currentPage - 4;
-    const end = currentPage <= 4 ? 8 : currentPage + 4;
+    const end = currentPage <= 4 ? 7 : currentPage + 3;
     const pagesToDisplay = pageNumbers.slice(start, end);
     console.log(pagesToDisplay);
 
     return (
         <div className='pagination_container'>
+            <button type='button' className='page_btn' onClick={firstPage}>
+                &lt;&lt;
+            </button>
+            <button
+                type='button'
+                className='page_btn left_side'
+                onClick={previousPage}
+            >
+                &lt;
+            </button>
             <ul className='pagination'>
-                <li className='page_btn' onClick={firstPage}>
-                    &lt;&lt;
-                </li>
-                <li className='page_btn left_side' onClick={previousPage}>
-                    &lt;
-                </li>
                 {pagesToDisplay.map((number) => {
                     return (
                         <li
@@ -45,13 +49,17 @@ function Paginate({
                         </li>
                     );
                 })}
-                <li className='page_btn right_side' onClick={nextPage}>
-                    &gt;
-                </li>
-                <li className='page_btn' onClick={lastPage}>
-                    &gt;&gt;
-                </li>
             </ul>
+            <button
+                type='button'
+                className='page_btn right_side'
+                onClick={nextPage}
+            >
+                &gt;
+            </button>
+            <button type='button' className='page_btn' onClick={lastPage}>
+                &gt;&gt;
+            </button>
         </div>
     );
 }

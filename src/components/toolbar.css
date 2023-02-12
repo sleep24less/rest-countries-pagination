@@ -23,8 +23,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
     padding: 0 70px;
+}
+
+.container_select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 }
 
 .toolbar input {

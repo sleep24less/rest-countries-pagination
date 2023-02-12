@@ -233,15 +233,11 @@ body {
     align-items: center;
     min-height: 100%;
     width: 100%;
+    gap: 30px;
 }
 
 .container {
     max-width: 1440px;
-}
-
-.pagination_container {
-    display: flex;
-    width: 100%;
 }
 
 /* RESPONSIVE DESIGN */
@@ -293,6 +289,10 @@ body {
     }
 
     .page_number.selected + .page_number {
+        display: flex;
+    }
+
+    .page_number.selected + .page_number + .page_number {
         display: flex;
     }
 }
