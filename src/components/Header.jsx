@@ -1,4 +1,4 @@
-import '../header.css';
+import './header.css';
 import ThemeSwitch from './ThemeSwitch';
 
 function Header() {

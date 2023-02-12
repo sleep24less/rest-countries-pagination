@@ -1,5 +1,5 @@
 import React from 'react';
-import '../themeswitch.css';
+import './themeswitch.css';
 
 function ThemeSwitch() {
     // function for dark/light mode toggle //

@@ -239,30 +239,33 @@ body {
     max-width: 1440px;
 }
 
+.pagination_container {
+    display: flex;
+    width: 100%;
+}
+
 /* RESPONSIVE DESIGN */
 @media only screen and (max-width: 768px) {
     .header {
         padding: 0 25px;
     }
 
-    .filter {
+    .toolbar {
         margin: 0;
-    }
-    .filter form {
         flex-direction: column;
         gap: 16px;
         padding: 25px;
     }
 
-    .filter input {
+    .toolbar input {
         width: 100%;
     }
 
-    .filter select {
+    .toolbar select {
         width: 100%;
     }
 
-    .main {
+    .content {
         padding: 0 25px;
         margin: 0;
     }
@@ -279,5 +282,17 @@ body {
     .country_name {
         font-size: 0.95rem;
         max-width: 100%;
+    }
+
+    .page_number {
+        display: none;
+    }
+
+    .page_number.selected {
+        display: flex;
+    }
+
+    .page_number.selected + .page_number {
+        display: flex;
     }
 }

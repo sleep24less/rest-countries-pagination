@@ -17,16 +17,17 @@
     --color-accent: #ff6e31;
 }
 
-.filter {
+.toolbar {
     width: 100%;
     max-width: 1240px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
+    padding: 0 70px;
 }
 
-.filter input {
+.toolbar input {
     background-color: var(--color-bg-elements);
     height: 40px;
     padding-left: 15px;
@@ -34,24 +35,14 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    font-family: inherit;
     color: var(--color-text);
 }
 
-.filter form {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 70px;
-}
-
-.filter input::placeholder {
+.toolbar input::placeholder {
     color: var(--color-text-light);
 }
 
-.filter select {
+.toolbar select {
     background-color: var(--color-bg-elements);
     height: 40px;
     font-family: inherit;
@@ -65,11 +56,11 @@
     cursor: pointer;
 }
 
-.filter optgroup {
+.toolbar optgroup {
     color: var(--color-text-light);
     font-weight: 300;
 }
 
-.filter option {
+.toolbar option {
     color: var(--color-text);
 }

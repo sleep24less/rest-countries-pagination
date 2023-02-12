@@ -1,5 +1,5 @@
 import React from 'react';
-import '../paginate.css';
+import './paginate.css';
 
 function Paginate({
     countriesPerPage,

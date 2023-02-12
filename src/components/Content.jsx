@@ -1,29 +1,31 @@
 import Country from './Country';
-import Filter from './Filter';
+import Toolbar from './Toolbar';
 import Paginate from './Paginate';
 import LoadingSpinner from './LoadingSpinner';
-import '../main.css';
+import './content.css';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-function Main() {
-    // Storing countries for display
+function Content() {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    // Storing unfiltered countries for use in sorting function
+
     const [unfilteredCountries, setUnfilteredCountries] = useState([]);
-    // Pagination states
+    const [initialSearchCountries, setInitialSearchCountries] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(8);
-    // Added numericCode value for key attribute in country component
+
+    const [sortingOrder, setSortingOrder] = useState('Alphabet');
+
     const url =
         'https://restcountries.com/v2/all?fields=name,region,area,numericCode,flag';
 
     // Function expression for fetching API data
-    const getCountriesData = async () => {
+    const getCountriesData = () => {
         setLoading(true);
-        await Axios.get(url)
+        Axios.get(url)
             .then((res) => {
                 setCountries(res.data);
                 setUnfilteredCountries(res.data);
@@ -49,16 +51,8 @@ function Main() {
         );
 
         // Alphabetical sorting
-        if (value === 'Alphabet') {
-            countriesArray = unfilteredCountries.sort((a, b) =>
-                a.name.localeCompare(b.name)
-            );
-            setCountries(countriesArray);
-        } else if (value === 'Reverse') {
-            countriesArray = [...unfilteredCountries].sort((a, b) =>
-                b.name.localeCompare(a.name)
-            );
-            setCountries(countriesArray);
+        if (value === 'All') {
+            countriesArray = unfilteredCountries;
         }
         // Region filtering
         else if (value === 'Africa') {
@@ -67,48 +61,71 @@ function Main() {
                     return country;
                 }
             });
-            setCountries(countriesArray);
         } else if (value === 'Americas') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.region === 'Americas') {
                     return country;
                 }
             });
-            setCountries(countriesArray);
         } else if (value === 'Asia') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.region === 'Asia') {
                     return country;
                 }
             });
-            setCountries(countriesArray);
         } else if (value === 'Europe') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.region === 'Europe') {
                     return country;
                 }
             });
-            setCountries(countriesArray);
         } else if (value === 'Oceania') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.region === 'Oceania') {
                     return country;
                 }
             });
-            setCountries(countriesArray);
         }
         // Area filtering
         else if (value === 'Smaller') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.area < lithuania.area) return country;
             });
-            setCountries(countriesArray);
         } else if (value === 'Bigger') {
             countriesArray = unfilteredCountries.filter((country) => {
                 if (country.area > lithuania.area) return country;
             });
-            setCountries(countriesArray);
         }
+        setCountries(countriesArray);
+        setInitialSearchCountries(countriesArray);
+    };
+
+    const onClickSort = () => {
+        let countriesArray = [];
+        if (sortingOrder === 'Alphabet') {
+            countriesArray = [...countries].sort((a, b) =>
+                b.name.localeCompare(a.name)
+            );
+            setCountries(countriesArray);
+            setInitialSearchCountries(countriesArray);
+            setSortingOrder('Reverse');
+        } else if (sortingOrder === 'Reverse') {
+            countriesArray = countries.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+            setCountries(countriesArray);
+            setInitialSearchCountries(countriesArray);
+            setSortingOrder('Alphabet');
+        }
+    };
+
+    const handleSearch = (e) => {
+        const { value } = e.target;
+        if (!value) return setCountries(initialSearchCountries);
+        const filteredCountries = countries.filter((country) =>
+            country.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setCountries(filteredCountries);
     };
 
     // Pagination variables for displaying
@@ -138,15 +155,17 @@ function Main() {
     };
 
     const nextPage = () => {
-        if (currentPage !== 1) {
-            setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
-        }
+        setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
     };
 
     return (
         <>
-            <Filter handleFilter={handleFilter} />
-            <main className='main'>
+            <Toolbar
+                handleChange={handleFilter}
+                handleClick={onClickSort}
+                handleSearch={handleSearch}
+            />
+            <main className='content'>
                 {/* Display error from API */}
                 {error && <h1 className='error'>{error.message}</h1>}
                 {/* Display loading while fetching */}
@@ -179,4 +198,4 @@ function Main() {
     );
 }
 
-export default Main;
+export default Content;
