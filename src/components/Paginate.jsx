@@ -21,8 +21,6 @@ function Paginate({
     const start = currentPage <= 4 ? 0 : currentPage - 4;
     const end = currentPage <= 4 ? 7 : currentPage + 3;
     const pagesToDisplay = pageNumbers.slice(start, end);
-    console.log(pagesToDisplay);
-
     return (
         <div className='pagination_container'>
             <button

@@ -29,6 +29,7 @@ function Content() {
             .then((res) => {
                 setCountries(res.data);
                 setUnfilteredCountries(res.data);
+                setInitialSearchCountries(res.data);
                 setLoading(false);
             })
             .catch((err) => {
