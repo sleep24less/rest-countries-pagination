@@ -19,6 +19,7 @@ function Content() {
     const [error, setError] = useState(null);
 
     const [sortingOrder, setSortingOrder] = useState(true);
+    const [searchValue, setSearchValue] = useState(undefined);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(8);
@@ -44,31 +45,35 @@ function Content() {
         getCountriesData();
     }, []);
 
-    // SORT / FILTER / SEARCH
+    const handleSearch = (e) => {
+        setSearchValue(e.target.value);
+    };
+
+    useEffect(() => {
+        if (!searchValue) {
+            setCountries(initialSearchCountries);
+            return;
+        }
+        const filteredCountries = initialSearchCountries.filter((country) =>
+            country.name.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        setCountries(filteredCountries);
+    }, [searchValue, initialSearchCountries]);
+
     const handleFilter = (e) => {
         const { value } = e.target;
-        let countriesArray = filterCountries(value, unfilteredCountries);
+        const countriesArray = filterCountries(value, unfilteredCountries);
         setCountries(countriesArray);
         setInitialSearchCountries(countriesArray);
     };
 
     const onClickSort = () => {
-        let countriesArray = sortOrder(sortingOrder, countries);
+        const countriesArray = sortOrder(sortingOrder, countries);
         setCountries(countriesArray);
         setInitialSearchCountries(countriesArray);
         setSortingOrder((prevSortingOrder) => !prevSortingOrder);
     };
 
-    const handleSearch = (e) => {
-        const { value } = e.target;
-        if (!value) return setCountries(initialSearchCountries);
-        const filteredCountries = countries.filter((country) =>
-            country.name.toLowerCase().includes(value.toLowerCase())
-        );
-        setCountries(filteredCountries);
-    };
-
-    // PAGINATION
     useEffect(() => {
         const indexOfLastCountry = currentPage * countriesPerPage;
         const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -78,8 +83,8 @@ function Content() {
     }, [countries, currentPage, countriesPerPage]);
 
     useEffect(() => {
-        const numberOfPages = Math.ceil(countries.length / countriesPerPage);
-        setNumberOfPages(numberOfPages);
+        const newNumberOfPages = Math.ceil(countries.length / countriesPerPage);
+        setNumberOfPages(newNumberOfPages);
         setCurrentPage(1);
     }, [countries]);
 

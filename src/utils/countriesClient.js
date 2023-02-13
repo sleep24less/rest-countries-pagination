@@ -7,12 +7,11 @@ export function getCountries() {
     return Axios.get(url).then((res) => res.data);
 }
 
-export function sortOrder(value, array) {
-    if (value === true) {
+export function sortOrder(isDescending, array) {
+    if (isDescending === true) {
         return [...array].sort((a, b) => b.name.localeCompare(a.name));
-    } else {
-        return [...array].sort((a, b) => a.name.localeCompare(b.name));
     }
+    return [...array].sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function filterCountries(value, array) {
@@ -20,17 +19,12 @@ export function filterCountries(value, array) {
 
     if (value === 'All') {
         return array;
-    } else if (value === 'Smaller') {
-        return array.filter((country) => {
-            if (country.area < lithuania.area) return country;
-        });
-    } else if (value === 'Bigger') {
-        return array.filter((country) => {
-            if (country.area > lithuania.area) return country;
-        });
-    } else {
-        return array.filter((country) => {
-            if (value === country.region) return country;
-        });
     }
+    if (value === 'Smaller') {
+        return array.filter((country) => country.area < lithuania.area);
+    }
+    if (value === 'Bigger') {
+        return array.filter((country) => country.area > lithuania.area);
+    }
+    return array.filter((country) => value === country.region);
 }
