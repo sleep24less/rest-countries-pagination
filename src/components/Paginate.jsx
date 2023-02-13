@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './paginate.css';
+
+const getNumberOfPages = (totalCountries, countriesPerPage) => {
+    const pageNumbers = [];
+    const numberOfPages = Math.ceil(totalCountries / countriesPerPage);
+    for (let i = 1; i <= numberOfPages; i++) {
+        pageNumbers.push(i);
+    }
+    return pageNumbers;
+};
 
 function Paginate({
     countriesPerPage,
@@ -11,16 +20,16 @@ function Paginate({
     handleFirstPageClick,
     handleLastPageClick,
 }) {
-    // Store all pages in pageNumbers
-    const pageNumbers = [];
-    const numberOfPages = Math.ceil(totalCountries / countriesPerPage);
-    for (let i = 1; i <= numberOfPages; i++) {
-        pageNumbers.push(i);
-    }
-    // Display only 8 pages at the time using currentPage as anchor
-    const start = currentPage <= 4 ? 0 : currentPage - 4;
-    const end = currentPage <= 4 ? 7 : currentPage + 3;
-    const pagesToDisplay = pageNumbers.slice(start, end);
+    const [pagesToDisplay, setPagesToDisplay] = useState([]);
+
+    useEffect(() => {
+        const start = currentPage <= 4 ? 0 : currentPage - 4;
+        const end = currentPage <= 4 ? 7 : currentPage + 3;
+        setPagesToDisplay(
+            getNumberOfPages(totalCountries, countriesPerPage).slice(start, end)
+        );
+    }, [currentPage, countriesPerPage, totalCountries]);
+
     return (
         <div className='pagination_container'>
             <button
