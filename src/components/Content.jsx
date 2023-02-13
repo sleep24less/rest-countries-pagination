@@ -22,15 +22,17 @@ function Content() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(8);
+    const [numberOfPages, setNumberOfPages] = useState();
+    const [paginatedCountries, setPaginatedCountries] = useState([]);
 
     const getCountriesData = () => {
         setLoading(true);
         getCountries()
             .then((data) => {
-                setLoading(false);
                 setCountries(data);
                 setUnfilteredCountries(data);
                 setInitialSearchCountries(data);
+                setLoading(false);
             })
             .catch((err) => {
                 setLoading(false);
@@ -42,6 +44,7 @@ function Content() {
         getCountriesData();
     }, []);
 
+    // SORT / FILTER / SEARCH
     const handleFilter = (e) => {
         const { value } = e.target;
         let countriesArray = filterCountries(value, unfilteredCountries);
@@ -65,14 +68,21 @@ function Content() {
         setCountries(filteredCountries);
     };
 
-    // Pagination variables for displaying
-    const indexOfLastCountry = currentPage * countriesPerPage;
-    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-    const paginatedCountries = countries.slice(
-        indexOfFirstCountry,
-        indexOfLastCountry
-    );
-    // Function that sets the current page for the Pagination component to use
+    // PAGINATION
+    useEffect(() => {
+        const indexOfLastCountry = currentPage * countriesPerPage;
+        const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+        setPaginatedCountries(
+            countries.slice(indexOfFirstCountry, indexOfLastCountry)
+        );
+    }, [countries, currentPage, countriesPerPage]);
+
+    useEffect(() => {
+        const numberOfPages = Math.ceil(countries.length / countriesPerPage);
+        setNumberOfPages(numberOfPages);
+        setCurrentPage(1);
+    }, [countries]);
+
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -80,9 +90,6 @@ function Content() {
         setCurrentPage(1);
     };
     const handleLastPageClick = () => {
-        const numberOfPages = Math.ceil(
-            unfilteredCountries.length / countriesPerPage
-        );
         setCurrentPage(numberOfPages);
     };
     const handlePreviousPageClick = () => {
@@ -90,9 +97,10 @@ function Content() {
             setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
         }
     };
-
     const handleNextPageClick = () => {
-        setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
+        if (currentPage !== numberOfPages) {
+            setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
+        }
     };
 
     return (

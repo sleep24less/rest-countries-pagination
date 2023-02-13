@@ -8,7 +8,7 @@ import './sortingbutton.css';
 function SortingButton({ handleClick, sortingOrder }) {
     return (
         <button type='button' className='sorting_button' onClick={handleClick}>
-            {sortingOrder === 'Alphabet' ? (
+            {sortingOrder === true ? (
                 <FontAwesomeIcon icon={faArrowDownAZ} />
             ) : (
                 <FontAwesomeIcon icon={faArrowDownZA} />

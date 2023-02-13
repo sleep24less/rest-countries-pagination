@@ -8,15 +8,10 @@ export function getCountries() {
 }
 
 export function sortOrder(value, array) {
-    let sortedArray = [];
     if (value === true) {
-        return (sortedArray = [...array].sort((a, b) =>
-            b.name.localeCompare(a.name)
-        ));
-    } else if (value === false) {
-        return (sortedArray = array.sort((a, b) =>
-            a.name.localeCompare(b.name)
-        ));
+        return [...array].sort((a, b) => b.name.localeCompare(a.name));
+    } else {
+        return [...array].sort((a, b) => a.name.localeCompare(b.name));
     }
 }
 
