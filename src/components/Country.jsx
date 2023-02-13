@@ -1,20 +1,20 @@
 import './country.css';
 
-function Country(props) {
+function Country({ flag, name, region, area }) {
     return (
         <div className='country'>
             <img
-                src={props.flag}
+                src={flag}
                 className='country_flag'
-                alt={`Picture of ${props.name} flag`}
-            ></img>
+                alt={`Picture of ${name} flag`}
+            />
             <div className='country_info'>
-                <h3 className='country_name'>{props.name}</h3>
+                <h3 className='country_name'>{name}</h3>
                 <p>
-                    <b>Region:</b> {props.region}
+                    <b>Region:</b> {region}
                 </p>
                 <p>
-                    <b>Area:</b> {props.area} km²
+                    <b>Area:</b> {area} km²
                 </p>
             </div>
         </div>

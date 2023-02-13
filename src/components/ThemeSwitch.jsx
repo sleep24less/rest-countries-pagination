@@ -12,15 +12,6 @@ function ThemeSwitch() {
         document.documentElement.classList.toggle('dark', isDarkMode);
     }, [isDarkMode]);
 
-    // // function for dark/light mode toggle //
-    // function handleChange(e) {
-    //     if (e.target.checked) {
-    //         document.querySelector(':root').classList.add('dark');
-    //     } else {
-    //         document.querySelector(':root').classList.remove('dark');
-    //     }
-    // }
-
     return (
         <input
             type='checkbox'

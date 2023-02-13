@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
+import {
+    getCountries,
+    sortOrder,
+    filterCountries,
+} from '../utils/countriesClient';
 import Country from './Country';
 import Toolbar from './Toolbar';
 import Paginate from './Paginate';
@@ -8,29 +12,25 @@ import './content.css';
 
 function Content() {
     const [countries, setCountries] = useState([]);
+    const [unfilteredCountries, setUnfilteredCountries] = useState([]);
+    const [initialSearchCountries, setInitialSearchCountries] = useState([]);
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const [unfilteredCountries, setUnfilteredCountries] = useState([]);
-    const [initialSearchCountries, setInitialSearchCountries] = useState([]);
+    const [sortingOrder, setSortingOrder] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(8);
 
-    const [sortingOrder, setSortingOrder] = useState('Alphabet');
-
-    const url =
-        'https://restcountries.com/v2/all?fields=name,region,area,numericCode,flag';
-
-    // Function expression for fetching API data
     const getCountriesData = () => {
         setLoading(true);
-        Axios.get(url)
-            .then((res) => {
-                setCountries(res.data);
-                setUnfilteredCountries(res.data);
-                setInitialSearchCountries(res.data);
+        getCountries()
+            .then((data) => {
                 setLoading(false);
+                setCountries(data);
+                setUnfilteredCountries(data);
+                setInitialSearchCountries(data);
             })
             .catch((err) => {
                 setLoading(false);
@@ -38,86 +38,22 @@ function Content() {
             });
     };
 
-    // load API data onload once
     useEffect(() => {
         getCountriesData();
     }, []);
 
-    // Handles sorting functionality
     const handleFilter = (e) => {
         const { value } = e.target;
-        let countriesArray = [];
-        const lithuania = unfilteredCountries.find(
-            (country) => country.name === 'Lithuania'
-        );
-
-        // Alphabetical sorting
-        if (value === 'All') {
-            countriesArray = unfilteredCountries;
-        }
-        // Region filtering
-        else if (value === 'Africa') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.region === 'Africa') {
-                    return country;
-                }
-            });
-        } else if (value === 'Americas') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.region === 'Americas') {
-                    return country;
-                }
-            });
-        } else if (value === 'Asia') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.region === 'Asia') {
-                    return country;
-                }
-            });
-        } else if (value === 'Europe') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.region === 'Europe') {
-                    return country;
-                }
-            });
-        } else if (value === 'Oceania') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.region === 'Oceania') {
-                    return country;
-                }
-            });
-        }
-        // Area filtering
-        else if (value === 'Smaller') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.area < lithuania.area) return country;
-            });
-        } else if (value === 'Bigger') {
-            countriesArray = unfilteredCountries.filter((country) => {
-                if (country.area > lithuania.area) return country;
-            });
-        }
+        let countriesArray = filterCountries(value, unfilteredCountries);
         setCountries(countriesArray);
         setInitialSearchCountries(countriesArray);
     };
 
     const onClickSort = () => {
-        let countriesArray = [];
-        if (sortingOrder === 'Alphabet') {
-            countriesArray = [...countries].sort((a, b) =>
-                b.name.localeCompare(a.name)
-            );
-            setCountries(countriesArray);
-            setInitialSearchCountries(countriesArray);
-            setSortingOrder('Reverse');
-        } else if (sortingOrder === 'Reverse') {
-            countriesArray = countries.sort((a, b) =>
-                a.name.localeCompare(b.name)
-            );
-            setCountries(countriesArray);
-            setInitialSearchCountries(countriesArray);
-            setSortingOrder('Alphabet');
-        }
+        let countriesArray = sortOrder(sortingOrder, countries);
+        setCountries(countriesArray);
+        setInitialSearchCountries(countriesArray);
+        setSortingOrder((prevSortingOrder) => !prevSortingOrder);
     };
 
     const handleSearch = (e) => {
@@ -132,7 +68,7 @@ function Content() {
     // Pagination variables for displaying
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-    const currentCountries = countries.slice(
+    const paginatedCountries = countries.slice(
         indexOfFirstCountry,
         indexOfLastCountry
     );
@@ -170,7 +106,7 @@ function Content() {
             <main className='content'>
                 {error && <h1>{error.message}</h1>}
                 {loading && <LoadingSpinner />}
-                {currentCountries.map((country) => {
+                {paginatedCountries.map((country) => {
                     const { name, region, area, numericCode, flag } = country;
                     return (
                         <Country
