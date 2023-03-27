@@ -1,4 +1,12 @@
-Reiz Internship Assignment
+REST countries app
+
+I build this app as a homework assignment.
+
+For this app I:
+• Fetched the data from the endpoint and displayed it.
+• Made the list sortable alphabetically by name (ascending, descending).
+• Implemented a filter(s) that filters countries by region and by area.
+• Implemented pagination even though the API didn't have a method for pagination included.
 
 [Live link](https://sleep24less.github.io/reiz-internship-assignment/)
 
