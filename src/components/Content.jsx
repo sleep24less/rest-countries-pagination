@@ -3,7 +3,7 @@ import {
     getCountries,
     sortOrder,
     filterCountries,
-} from '../utils/countriesClient';
+} from '../utils/countriesUtils';
 import Country from './Country';
 import Toolbar from './Toolbar';
 import Paginate from './Paginate';
@@ -37,6 +37,7 @@ function Content() {
             })
             .catch((err) => {
                 setLoading(false);
+                console.log(err);
                 setError(err);
             });
     };
@@ -117,7 +118,12 @@ function Content() {
                 sortingOrder={sortingOrder}
             />
             <main className='content'>
-                {error && <h1>{error.message}</h1>}
+                {error && (
+                    <h1>
+                        Sorry, something went wrong. Please try again later.{' '}
+                        <br /> &#40;{error.message}&#41;
+                    </h1>
+                )}
                 {loading && <LoadingSpinner />}
                 {paginatedCountries.map((country) => {
                     const { name, region, area, numericCode, flag } = country;
