@@ -22,7 +22,7 @@ function Content() {
     const [searchValue, setSearchValue] = useState(undefined);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [countriesPerPage] = useState(8);
+    const [countriesPerPage] = useState(6);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [paginatedCountries, setPaginatedCountries] = useState([]);
 

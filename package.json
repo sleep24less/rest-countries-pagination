@@ -1,9 +1,9 @@
 {
-    "name": "reiz-internship-assignment",
+    "name": "rest-countries-pagination",
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://sleep24less.github.io/reiz-internship-assignment/",
+    "homepage": "https://sleep24less.github.io/rest-countries-pagination/",
     "scripts": {
         "analyze": "source-map-explorer 'build/static/js/*.js'",
         "dev": "vite",

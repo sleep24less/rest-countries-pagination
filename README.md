@@ -1,6 +1,6 @@
 REST countries app
 
-I build this app as a homework assignment.
+Built an app using RESTcountries API with pagination
 
 For this app I:
 • Fetched the data from the endpoint and displayed it.
