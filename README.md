@@ -8,7 +8,7 @@ For this app I:
 • Implemented a filter(s) that filters countries by region and by area.
 • Implemented pagination even though the API didn't have a method for pagination included.
 
-[Live link](https://sleep24less.github.io/reiz-internship-assignment/)
+[Live link](https://sleep24less.github.io/rest-countries-pagination/)
 
 HOW TO RUN LOCALLY
 
